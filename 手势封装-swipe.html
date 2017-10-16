@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>触屏事件</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #f7f7f7;
+		}
+		.box {
+			width: 320px;
+			height: 400px;
+			background-color: pink;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+
+	<script>
+		//思路：1.X坐标差值大于Y坐标差值时为水平方向，否则为垂直方向
+				// 2.x轴结束坐标大于起始坐标是向右，小于则向左；y轴结束坐标大于起始坐标是向下，小于则向上
+
+		// 步骤：
+		// 1.声明变量
+		var startX , startY, endX, endY, absX, absY;
+		// 2.给document添加touchstart事件，为了获取起始坐标
+		document.addEventListener("touchstart", function(e){
+			var touches = e.targetTouches[0];
+			// 3.获取起始点坐标
+			startX = touches.clientX;
+			startY = touches.clientY;
+		})
+		// 4.给document添加touchend事件，为了获取结束坐标
+		document.addEventListener("touchend",function(e){
+			var touches = e.changedTouches[0];
+			// 5.获取结束点坐标
+			endX = touches.clientX;
+			endY = touches.clientY;
+
+			// 6. 计算X和Y坐标的绝对值
+			absX = Math.abs(endX - startX);
+			absY = Math.abs(endY - startY);
+
+			// 7.判断水平还是垂直
+			var direction = absX > absY ? 
+			//8.如果是水平判断是向左还是向右
+			endX > startX ? '向左' : '向右':
+			//9.如果是垂直判断是向下还是向上
+			endY > startY ? '向下' : '向上';
+			console.log(direction);
+		})
+
+		
+
+
+	</script>
+</body>
+</html>
