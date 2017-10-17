@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点透例子</title>
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #F7F7F7;
+		}
+
+		.box {
+			width: 320px;
+			height: 320px;
+			margin: 100px auto;
+			position: relative;
+		}
+
+		.tap {
+			width: 200px;
+			height: 200px;
+			font-size: 30px;
+			text-align: center;
+			line-height: 200px;
+			background-color: red;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: -100px 0 0 -100px;
+		}
+
+		.click {
+			width: 300px;
+			height: 300px;
+			font-size: 30px;
+			text-align: center;
+			line-height: 300px;
+			background-color: pink;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: -150px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="click">click</div>
+		<div class="tap">tap</div>
+	</div>
+
+	<!-- 引入zepto.js -->
+	<script src="./js/zepto.js"></script>
+	<script src="./js/fastclick.js"></script>
+	<script>
+		FastClick.attach(document.body);
+		$('.tap').tap(function(){
+			$(this).hide();
+			console.log('tap事件被触发了！');
+
+		})
+
+		$('.click').click(function(){
+			console.log('click事件被触发了！');
+		})
+
+
+
+
+	</script>
+	
+
+</body>
+</html>
